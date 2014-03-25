@@ -6,6 +6,7 @@ Bootstrap plugin to add a tour of a webpage
 ## Html markup
 
 A tour element on the page should be structured as follows:
+```html
 <div class="panel panel-danger tour" id="my-tour">
 <div class="panel-heading">
 First time here? Take a tour of the website's features.
@@ -15,7 +16,7 @@ First time here? Take a tour of the website's features.
 <button class="btn btn-danger" data-stop="tour">Stop</button>
 </div>
 </div>
-
+```
 Use the 'data-stop' and 'data-start' attributes to specify which elements should stop and start the tour. 
 
 ## Javascript
