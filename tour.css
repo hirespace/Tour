@@ -4,7 +4,7 @@
  right: 0;
  bottom: 0;
  left: 0;
- z-index: 1009;
+ z-index: 1030;
  display: none;
  overflow: auto;
  overflow-y: scroll;
@@ -13,13 +13,15 @@
  filter: alpha(opacity=50);
 }
 
-.tour {
-    z-index: 1010;
-    position: fixed;
-    top: 50px;
-    right: 10px;
+.tour.in {
+    z-index: 1040;
+    position: fixed !important;
 }
 
-.tour-in {
+.popover {
+    z-index: 1040 !important;
+}
+
+.tour-backdrop.in {
     display: block;
 }

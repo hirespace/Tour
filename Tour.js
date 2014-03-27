@@ -1,4 +1,12 @@
-﻿(function ($) {
+﻿/* ========================================================================
+ * HireSpace: tour.js v1
+ * http://hirespacedemos.azurewebsites.net/Tour
+ * ========================================================================
+ * Copyright 2014 Hire Space, Inc.
+ * Licensed under MIT (https://github.com/hirespace/tour/blob/master/LICENSE.txt)
+ * ======================================================================== */
+
+(function ($) {
 
     $.fn.goTo = function () {
         $('html, body').animate({
@@ -22,7 +30,9 @@
 
         this.$start.click(function () {
             self.start();
-        });      
+        });
+
+        this.startText = this.$start.text();
 
     };
 
@@ -38,11 +48,12 @@
             this.$backdrop = $('<div class="tour-backdrop" />')
                 .appendTo(document.body);
 
-            this.$backdrop.addClass('tour-in');
+            this.$backdrop.addClass('in');
+
 
 
         } else if (!this.isActive && this.$backdrop) {
-            this.$backdrop.removeClass('tour-in');
+            this.$backdrop.removeClass('in');
         }
     };
 
@@ -53,20 +64,21 @@
         var items = this.options.items;
 
         if (!this.isActive) return;
-        
+
         this.hideTourItem(items[self.i]);
 
         self.i = 0;
-        
-        self.$start.text("Start");
+
+        self.$start.text(this.startText);
 
         self.$start.off();
         self.$start.on('click', function () {
             self.start();
         });
-        
+
         this.isActive = false;
         this.backdrop();
+        this.$element.removeClass('in');
         this.escape();
 
     };
@@ -83,7 +95,7 @@
 
 
     Tour.prototype.hideTour = function () {
-       
+
         this.stop();
         this.backdrop();
     };
@@ -94,6 +106,8 @@
         if (this.isActive) return;
         this.isActive = true;
 
+        this.$element.addClass('in');
+
         this.escape();
 
         this.$element.on('click.stop.tour', '[data-stop="tour"]', $.proxy(this.stop, this));
@@ -103,47 +117,44 @@
         var manual = this.options.manual;
         var items = this.options.items;
         var length = this.options.items.length;
-        
+
 
         self.i = 0;
-       
+
         if ($(items[self.i].id).length > 0)
             this.showTourItem(items[self.i]);
-        
-        if (manual) {
-            
-            this.$start.text("Continue");
 
-            this.$start.on('click', function () {
+        this.$start.text("Continue");
 
-                self.hideTourItem(items[self.i]);
-                self.i++;
-                if (self.i < length && $(items[self.i].id).length >0) {
-                    self.showTourItem(items[self.i]);
+        this.$start.on('click', function () {
 
-                } else {
-                    self.i = self.i - 1;
-                    self.stop();
-                   }
-            });
+            self.hideTourItem(items[self.i]);
+            self.i++;
+            if (self.i < length && $(items[self.i].id).length > 0) {
+                self.showTourItem(items[self.i]);
 
-        } else {
+            } else {
+                self.i = self.i - 1;
+                self.stop();
+            }
+        });
 
-            self.continue();        
+        if (!manual) {
+            self.continue();
         }
 
     };
 
     Tour.prototype.continue = function () {
         var self = this;
-       
+
         var items = this.options.items;
         var length = this.options.items.length;
         var delay = this.options.delay;
-        
+
         if (this.isActive && $(items[self.i].id).length > 0) {
             setTimeout(function () {
-            
+
                 self.hideTourItem(items[self.i]);
                 self.i++;
                 if (self.i < length && self.isActive && $(items[self.i].id).length > 0) {
