@@ -1,7 +1,7 @@
 Tour
 ====
 
-Bootstrap plugin to add a tour of a webpage
+Bootstrap plugin to add a tour of a webpage. See working demo at http://hirespacedemos.azurewebsites.net/Tour
 
 ## Html markup
 
