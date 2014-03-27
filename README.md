@@ -1,7 +1,9 @@
 Tour
 ====
 
-Bootstrap plugin to add a tour of a webpage. See working demo at http://hirespacedemos.azurewebsites.net/Tour
+![Hire Space Logo](http://venues.hirespace.com/content/img/hire-space-big-logo.png "Hire Space Logo")
+
+Bootstrap plugin to add a tour to a webpage. See working demo at http://hirespacedemos.azurewebsites.net/Tour
 
 ## Html markup
 
@@ -49,3 +51,6 @@ So an example implementation might look like:
   $('#my-tour').tour(options);
 ```
 
+## Copyright and license
+
+Code and documentation copyright 2014 Hire Space. Code released under [the MIT license](LICENSE.txt).
